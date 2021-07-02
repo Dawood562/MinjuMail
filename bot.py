@@ -260,7 +260,7 @@ async def shutdown(ctx):
 
 
 @client.command()
-@commands.cooldown(1,900,commands.BucketType.user)
+@commands.cooldown(1,5,commands.BucketType.user)
 async def points(ctx, *type):
     try:
         print(getvotes(type))
@@ -281,6 +281,7 @@ async def testcd(ctx):
 
 @client.command(aliases=['bugreport', 'br', 'reportbug', 'rab', 'rb'])
 @discord.ext.commands.dm_only()
+@commands.cooldown(1,900,commands.BucketType.user)
 async def reportabug(ctx):
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Reporting started by {ctx.message.author}')
     while True:
@@ -432,6 +433,7 @@ def checkgivenfield(newembed, EmbedToEdit, editing, givenfield):
 
 @client.command(aliases=['sac', 'scard', 'scards', 'cardsuggest', 'cs'])
 @discord.ext.commands.dm_only()
+@commands.cooldown(1,900,commands.BucketType.user)
 async def suggestacard(ctx):
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card Suggestion started by {ctx.message.author}')
     while True:
