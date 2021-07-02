@@ -12,6 +12,7 @@ from datetime import datetime
 # from collections import namedtuple
 import traceback
 import sys
+from jsonfuncs import *
 
 
 intents = discord.Intents.default()
@@ -258,6 +259,13 @@ async def shutdown(ctx):
         exit()
 
 
+@client.command()
+@commands.cooldown(1,900,commands.BucketType.user)
+async def points(ctx, *type):
+    novotes = getvotes(type)
+    await ctx.send(f'{ctx.author.mention}, {type} has 0 votes.')
+        
+        
 
 @client.command()
 @discord.ext.commands.dm_only()
