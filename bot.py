@@ -262,8 +262,13 @@ async def shutdown(ctx):
 @client.command()
 @commands.cooldown(1,900,commands.BucketType.user)
 async def points(ctx, *type):
-    novotes = getvotes(type)
-    await ctx.send(f'{ctx.author.mention}, {type} has {novotes} votes.')
+    try:
+        print(getvotes(type))
+    except KeyError:
+        await ctx.send(f'{ctx.author.mention}, {type} has never been suggested.')
+    else:
+        novotes = getvotes(type)
+        await ctx.send(f'{ctx.author.mention}, {type} has {novotes} votes.')
         
         
 
