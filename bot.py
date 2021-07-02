@@ -529,5 +529,5 @@ async def edit(ctx, msgid: int, givenfield: str, *editing):
                 await ctx.send('You need to say one of `steps`, `expected`, or `actual`!')
     
 
-
-client.run('ODQxMzQwNjA0NzEzNzk1NjA1.YJlVfw.Il4fqLocpflx5KtxN6Fnh85-V6w')
+client_token = os.environ.get("TOKEN")
+client.run(client_token)
