@@ -1,0 +1,26 @@
+{
+    "JUS2": {
+        "artist": "JUS2",
+        "atype": "GROUP",
+        "gender": "MIXED",
+        "votes": 1
+    },
+    "TEST": {
+        "artist": "TEST",
+        "atype": "GROUP",
+        "gender": "MALE",
+        "votes": 1
+    },
+    "TWICE": {
+        "artist": "TWICE",
+        "atype": "GROUP",
+        "gender":"FEMALE",
+        "votes": 123123123213213123123123123124
+    },
+    "WJSN": {
+        "artist": "WJSN",
+        "atype": "GROUP",
+        "gender":"FEMALE",
+        "votes": 999999999
+    }
+}
