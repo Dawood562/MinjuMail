@@ -263,7 +263,7 @@ async def shutdown(ctx):
 @commands.cooldown(1,900,commands.BucketType.user)
 async def points(ctx, *type):
     novotes = getvotes(type)
-    await ctx.send(f'{ctx.author.mention}, {type} has 0 votes.')
+    await ctx.send(f'{ctx.author.mention}, {type} has {novotes} votes.')
         
         
 
