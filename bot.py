@@ -204,18 +204,18 @@ async def accept(ctx, msgid: int):
             VEmbed.set_footer(text=f'{efooter}')
             SUGGESTEmbed = await client.get_channel(842070860494929950).send(embed=VEmbed)
             await SUGGESTEmbed.add_reaction('⬆️')
-            await ctx.send(embed=discord.Embed(title='Bug Report Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
+            await ctx.send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
     else:
         await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
 @client.command(aliases=['deny'])
 async def reject(ctx, msgid: int):
-    if ctx.author.id in staffids:     
+    if ctx.author.id in staffids:
         asd = await client.get_channel(842070840929419284).fetch_message(msgid)
         eauth = asd.embeds[0].author.name
         efooter = asd.embeds[0].footer.text
         reporterid = int(efooter[efooter.find('(', 17, len(efooter))+1:-1])
-        rejectreason = await client.get_channel(842070840929419284).send(embed=discord.Embed(title='Why are you rejecting this bug report?', 
+        rejectreason = await client.get_channel(842070840929419284).send(embed=discord.Embed(title='Why are you rejecting this?', 
                                                     description='''Below are a list of keywords you can use:\n
                                                     __Bugs:__
                                                     **known (link)** - Sends a message saying that the bug is known and has been reported at `link`.
@@ -246,8 +246,8 @@ async def reject(ctx, msgid: int):
             pass
         else:
             await MessageReply.delete()
-            await rejectreason.edit(embed=discord.Embed(title='Bug report successfully rejected!', description=f'Bug report [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has successfully been rejected by **{ctx.author}**, and <@{reporterid}> has been DMd. Reason:\n\n> {reason}', color=random.choice(embedcolours)))
-            await client.get_user(reporterid).send(embed=discord.Embed(title='Your bug report has been rejected.', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) was rejected by {ctx.author}.\n\nReason:\n> {reason}', color=random.choice(embedcolours)))
+            await rejectreason.edit(embed=discord.Embed(title=f'{asd.embeds[0].title} successfully rejected!', description=f'{asd.embeds[0].title} [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has successfully been rejected by **{ctx.author}**, and <@{reporterid}> has been DMd. Reason:\n\n> {reason}', color=random.choice(embedcolours)))
+            await client.get_user(reporterid).send(embed=discord.Embed(title=f'Your {asd.embeds[0].title} has been rejected.', description=f'[Your {asd.embeds[0].title}](https://discord.com/channels/@me/{eauth}) was rejected by {ctx.author}.\n\nReason:\n> {reason}', color=random.choice(embedcolours)))
     else:
         await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
