@@ -64,12 +64,16 @@ async def on_command_error(ctx, error):
 @client.event
 async def on_raw_reaction_add(ctx):
     if ctx.channel_id != 737721977816743966:
-        print('not the channel')
+        pass
     else:
         print('Reaction detected in suggest cards.')
-        
-        
-        
+        asd = await client.get_channel(737721977816743966).fetch_message(ctx.message_id)
+        efields = asd.embeds[0].fields
+        artist = efields[0].value
+        gender = efields[1].value
+        atype = efields[2].value
+        change_vote(artist, gender, atype, 1)
+        print(f'Added a vote to {artist}')
 
 @client.command()
 async def snow(ctx):
