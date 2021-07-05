@@ -443,7 +443,7 @@ def checkgivenfield(newembed, EmbedToEdit, editing, givenfield):
 async def suggestacard(ctx):
     print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card Suggestion started by {ctx.message.author}')
     while True:
-        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#suggest-cards channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
+        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
         QGroup = discord.Embed(color=random.choice(embedcolours), title="Artist Name (Without special characters):")
         await ctx.send(embed=QGroup)
         MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
@@ -497,7 +497,7 @@ async def suggestacard(ctx):
                 ECheck.set_footer(text=f'Suggested by {ctx.author} ({ctx.author.id})')
                 ECheck.set_author(name=f'{ctx.message.channel.id}/{DMEmbed.id}')
                 CHECKEmbed = await client.get_channel(842070840929419284).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
-                await CHECKEmbed.edit(content=f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this card suggestion.", embed=ECheck)
+                await CHECKEmbed.edit(content=f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this card suggestion.\nAlso remember that they can't submit special characters so don't reject for that!", embed=ECheck)
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been sent to the checking channel.')
                 break
             elif reaction.emoji == '❌':
