@@ -17,6 +17,7 @@ from jsonfuncs import *
 
 intents = discord.Intents.default()
 intents.members = True
+intents.reactions = True
 client = commands.Bot(command_prefix = '_', intents=intents, help_command=None, allowed_mentions = discord.AllowedMentions(everyone = False, roles = False))
 # slash = SlashCommand(client, sync_commands=True)
 # Wonyoung, Sakura, Yuri, Yena, Yujin, Nako, Eunbi, Hyewon, Hitomi, Chaewon, Minju, Chaeyeon
@@ -59,6 +60,13 @@ async def on_command_error(ctx, error):
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+
+@client.event
+async def on_raw_reaction_add(ctx):
+    print(ctx)
+        
+        
+        
 
 @client.command()
 async def snow(ctx):
@@ -264,12 +272,11 @@ async def shutdown(ctx):
 async def points(ctx, *type):
     type = ' '.join(type)
     try:
-        print(get_votes(type))
-    except KeyError:
-        await ctx.send(f'{ctx.author.mention}, {type} has never been suggested.')
-    else:
         novotes = get_votes(type)
-        await ctx.send(f'{ctx.author.mention}, {type} has {novotes} votes.')
+    except KeyError:
+        await ctx.send(f'{ctx.author.mention}, {type.upper()} has never been suggested.')
+    else:
+        await ctx.send(f'{ctx.author.mention}, {type.upper()} has {novotes} votes.')
         
         
 
