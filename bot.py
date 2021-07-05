@@ -338,8 +338,12 @@ async def reportabug(ctx):
                     AImage = (MessageReply.content)
                 else:
                     result = True
-            except HTTPException:
-                await ctx.send('Please send a valid link/image, not just some text!')
+            except discord.ext.commands.errors.CommandInvokeError:
+                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
+                    await ctx.send('Please send a valid link/image, not just some text!')
+                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
+                    AImage = (MessageReply.content)
+                
             else:
                 break
         # Check to cancel
