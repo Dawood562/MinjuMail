@@ -205,6 +205,7 @@ async def accept(ctx, msgid: int):
             SUGGESTEmbed = await client.get_channel(842070860494929950).send(embed=VEmbed)
             await SUGGESTEmbed.add_reaction('⬆️')
             await ctx.send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
+            await client.get_user(reporterid).send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) has been approved by **{ctx.author}** and sent to <#737721977816743966>.', color=random.choice(embedcolours)))
     else:
         await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
@@ -223,7 +224,7 @@ async def reject(ctx, msgid: int):
                                                     **fixed** - Informs the user that by the time they reported the bug and we've seen it, it's already been fixed.
 
                                                     __Cards:__
-                                                    **suggested** - Sends a message saying that the card has already been suggested.
+                                                    **suggested** - Sends a message saying that the artist has already been suggested.
                                                     **info** - Sends a message saying that their suggestion contains incorrect information.
 
                                                     **troll** - Doesn't send a response because they're trolling with the submission.
