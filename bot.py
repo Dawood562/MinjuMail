@@ -499,6 +499,7 @@ async def suggestacard(ctx):
                 CHECKEmbed = await client.get_channel(842070840929419284).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
                 await CHECKEmbed.edit(content=f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this card suggestion.", embed=ECheck)
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been sent to the checking channel.')
+                break
             elif reaction.emoji == '❌':
                 # Remove all reactions
                 CLDEmbed = discord.Embed(title='Card suggestion has been cancelled.', description='Please reuse the command to redo your entries!', color=random.choice(embedcolours))
@@ -506,9 +507,11 @@ async def suggestacard(ctx):
                 await DMEmbed.remove_reaction('❌', client.user)
                 await DMEmbed.remove_reaction('✅', client.user)
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been cancelled.')
+                break
 
             else:
                 return await ctx.send(f'You reacted with {reaction}... start again.')
+                break
 
 
 @client.command()
