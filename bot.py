@@ -57,6 +57,8 @@ async def on_command_error(ctx, error):
             await ctx.send(f"You're on cooldown for another **{tlstring}** {ctx.author.mention}!")
         except discord.HTTPException:
             pass
+    elif isinstance(error, commands.errors.CommandInvokeError):
+        await ctx.send('Please use a link or send an image!')
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
