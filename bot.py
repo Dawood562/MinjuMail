@@ -338,6 +338,8 @@ async def reportabug(ctx):
                     AImage = (MessageReply.content)
                 else:
                     result = True
+            except HTTPException:
+                await ctx.send('Please send a valid link/image, not just some text!')
             else:
                 break
         # Check to cancel
