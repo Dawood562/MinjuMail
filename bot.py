@@ -63,7 +63,10 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_raw_reaction_add(ctx):
-    print(ctx)
+    if (ctx.channel_id != 737721977816743966):
+        pass
+    else:
+        print('Reaction detected in suggest cards.')
         
         
         
