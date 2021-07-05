@@ -2,19 +2,19 @@ import os
 import json
 
 
-def add_vote(artist: str, gender: str, type: str):
+def change_vote(artist: str, gender: str, type: str, votestoadd):
     if os.path.isfile("suggestCards.json"):
         # Opens file and loads the data.
         with open("suggestCards.json", "r") as votes:
             data = json.load(votes)
         # Adds points if group already exists.
         try:
-            data[f"{artist.upper()}"]["votes"] += 1
+            data[f"{artist.upper()}"]["votes"] += votestoadd
         # Creates a new group and adds points if group doesnt exist
         except KeyError:
             data[f"{artist.upper()}"] = {"artist":artist.upper(), "gender":gender, "atype":type, "votes": 1}
     else:
-        data = {f"{artist}": {"points": 1}}
+        data = {f"{artist}": {"votes": 1}}
     # Saves file to store the data.
     with open("suggestCards.json", "w+") as votes:
         json.dump(data, votes, sort_keys=True, indent=4)
