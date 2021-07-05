@@ -13,7 +13,9 @@ from datetime import datetime
 # from collections import namedtuple
 import traceback
 import sys
-from jsonfuncs import *
+from jsonfuncs import add_vote
+from jsonfuncs import get_votes
+from jsonfuncs import remove_artist
 
 
 intents = discord.Intents.default()
