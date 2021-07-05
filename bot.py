@@ -63,6 +63,9 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_raw_reaction_add(ctx):
+    print(ctx)
+    print(ctx.channel_id)
+    print(ctx.RawReactionActionEvent.channel_id)
     if (ctx.channel_id != 737721977816743966):
         pass
     else:
