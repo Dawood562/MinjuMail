@@ -454,10 +454,12 @@ async def reportabug(ctx):
     else:
         pass
 
-@reportabug.event
+@reportabug.error
 async def clear_error(ctx, error):
     if isinstance(error, commands.errors.CommandInvokeError):
         await ctx.send("Please send a valid link/image, not just some text!\n\n*You're going to have to restart the command.*")
+    else:
+        await ctx.send('An unexpected error occured. Please try again, and let DaSnow562#0562 know what went wrong!')
 
 def checkgivenfield(newembed, EmbedToEdit, editing, givenfield):
     if givenfield.lower() == 'steps':
