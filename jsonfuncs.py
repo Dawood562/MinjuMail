@@ -9,10 +9,10 @@ def add_vote(artist: str, gender: str, type: str):
             data = json.load(votes)
         # Adds points if group already exists.
         try:
-            data[f"{artist}"]["votes"] += 1
+            data[f"{artist.upper()}"]["votes"] += 1
         # Creates a new group and adds points if group doesnt exist
         except KeyError:
-            data[f"{artist}"] = {"artist":artist, "gender":gender, "atype":type, "votes": 1}
+            data[f"{artist.upper()}"] = {"artist":artist.upper(), "gender":gender, "atype":type, "votes": 1}
     else:
         data = {f"{artist}": {"points": 1}}
     # Saves file to store the data.
@@ -23,7 +23,7 @@ def add_vote(artist: str, gender: str, type: str):
 def get_votes(artist: str):
     with open("suggestCards.json", "r") as votes:
         data = json.load(votes)
-    return data[f"{artist}"]["votes"]
+    return data[f"{artist.upper()}"]["votes"]
 
 def remove_artist(artist: str):
     if os.path.isfile("suggestCards.json"):
@@ -42,6 +42,6 @@ def remove_artist(artist: str):
                     pass
             json.dump(data, open("suggestCards.json", "w+"), indent=4)
         except KeyError:
-            print("That group doesn't exist!")
+            print(f"The group {artist} doesn't exist!")
         else:
             pass
