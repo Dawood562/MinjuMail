@@ -261,7 +261,7 @@ async def shutdown(ctx):
 
 @client.command()
 @commands.cooldown(1,5,commands.BucketType.user)
-async def points(ctx, *type):
+async def points(ctx, *type: str):
     try:
         print(get_votes(type))
     except KeyError:
