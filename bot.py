@@ -13,52 +13,7 @@ from datetime import datetime
 # from collections import namedtuple
 import traceback
 import sys
-
-#### JSON Functions ####
-def add_vote(artist: str, gender: str, type: str):
-    if os.path.isfile("suggestCards.json"):
-        # Opens file and loads the data.
-        with open("suggestCards.json", "r") as votes:
-            data = json.load(votes)
-        # Adds points if group already exists.
-        try:
-            data[f"{artist}"]["votes"] += 1
-        # Creates a new group and adds points if group doesnt exist
-        except KeyError:
-            data[f"{artist}"] = {"artist":artist, "gender":gender, "atype":type, "votes": 1}
-    else:
-        data = {f"{artist}": {"points": 1}}
-    # Saves file to store the data.
-    with open("suggestCards.json", "w+") as votes:
-        json.dump(data, votes, sort_keys=True, indent=4)
-
-
-def get_votes(artist: str):
-    with open("suggestCards.json", "r") as votes:
-        data = json.load(votes)
-    return data[f"{artist}"]["votes"]
-
-def remove_artist(artist: str):
-    if os.path.isfile("suggestCards.json"):
-        # Opens file and loads the data.
-        with open("suggestCards.json", "r") as votes:
-            data = json.load(votes)
-        try:
-            for i in data:
-                if data[i]["artist"].lower() == artist.lower():
-                    # If found
-                    data.pop(i)
-                    print(data)
-                    break
-                else:
-                    # If not found
-                    pass
-            json.dump(data, open("suggestCards.json", "w+"), indent=4)
-        except KeyError:
-            print("That group doesn't exist!")
-        else:
-            pass
-#### JSON Functions ####
+from jsonfuncs import *
 
 intents = discord.Intents.default()
 intents.members = True
@@ -308,11 +263,11 @@ async def shutdown(ctx):
 @commands.cooldown(1,5,commands.BucketType.user)
 async def points(ctx, *type):
     try:
-        print(getvotes(type))
+        print(get_votes(type))
     except KeyError:
         await ctx.send(f'{ctx.author.mention}, {type} has never been suggested.')
     else:
-        novotes = getvotes(type)
+        novotes = get_votes(type)
         await ctx.send(f'{ctx.author.mention}, {type} has {novotes} votes.')
         
         
