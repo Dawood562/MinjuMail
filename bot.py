@@ -58,9 +58,7 @@ async def on_command_error(ctx, error):
                 tlstring = f'{minsleft} minutes **and** {sleft} seconds'
             await ctx.send(f"You're on cooldown for another **{tlstring}** {ctx.author.mention}!")
         except discord.HTTPException:
-            pass
-    elif isinstance(error, commands.errors.CommandInvokeError):
-        
+            pass        
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
