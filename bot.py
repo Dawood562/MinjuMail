@@ -324,6 +324,9 @@ async def reportabug(ctx):
         result = None
         while result is None:
             try:
+                print(e)
+                print(discord.ext.commands.errors.CommandInvokeError(e))
+                print(discord.ext.commands.errors.CommandInvokeError(e).original)
                 AImage = MessageReply.attachments[0].url
                 if AImage[:7] != "https://" and AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-4:] != ".jpeg" and AImage[-4:] != ".gif":
                     await ctx.send('The image needs to be a `.gif`, `.png`, or `.jpg`!') 
