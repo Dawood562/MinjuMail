@@ -60,11 +60,10 @@ async def on_command_error(ctx, error):
         except discord.HTTPException:
             pass
     elif isinstance(error, commands.errors.CommandInvokeError):
-        await ctx.send("Please send a valid link/image, not just some text!\n\n*You're going to have to restart the command by the way.*")
+        
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
-
 
 @client.command()
 async def snow(ctx):
@@ -415,6 +414,10 @@ async def reportabug(ctx):
     else:
         pass
 
+@reportabug.event
+async def clear_error(ctx, error):
+    if isinstance(error, commands.errors.CommandInvokeError):
+        await ctx.send("Please send a valid link/image, not just some text!\n\n*You're going to have to restart the command.*")
 
 def checkgivenfield(newembed, EmbedToEdit, editing, givenfield):
     if givenfield.lower() == 'steps':
