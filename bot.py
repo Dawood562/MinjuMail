@@ -58,7 +58,7 @@ async def on_command_error(ctx, error):
         except discord.HTTPException:
             pass
     elif isinstance(error, commands.errors.CommandInvokeError):
-        await ctx.send('Please use a link or send an image!')
+        await ctx.send("Please send a valid link/image, not just some text!\n\n*You're going to have to restart the command by the way.*")
     else:
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
@@ -344,33 +344,6 @@ async def reportabug(ctx):
                     AImage = (MessageReply.content)
                 else:
                     result = True
-            except discord.ext.commands.errors.CommandInvokeError:
-                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
-                    await ctx.send('Please send a valid link/image, not just some text!')
-                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
-                    AImage = (MessageReply.content)
-                else:
-                    result = True
-            except HTTPException:
-                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
-                    await ctx.send('Please send a valid link/image, not just some text!')
-                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
-                    AImage = (MessageReply.content)
-            except discord.HTTPException:
-                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
-                    await ctx.send('Please send a valid link/image, not just some text!')
-                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
-                    AImage = (MessageReply.content)
-                else:
-                    result = True
-            except discord.errors.HTTPException:
-                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
-                    await ctx.send('Please send a valid link/image, not just some text!')
-                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
-                    AImage = (MessageReply.content)
-                else:
-                    result = True
-                
             else:
                 break
         # Check to cancel
