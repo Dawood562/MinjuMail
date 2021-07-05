@@ -332,6 +332,9 @@ async def reportabug(ctx):
                     AImage = (MessageReply.content)
                 else:
                     result = True
+                ECheck = discord.Embed(title="Bug Report")
+                ECheck.set_image(url=f'{AImage}')
+                DMEmbed = await ctx.send(embed=ECheck)
             except IndexError:
                 if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
                     await ctx.send('Invalid link!') 
