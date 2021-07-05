@@ -324,9 +324,6 @@ async def reportabug(ctx):
         result = None
         while result is None:
             try:
-                print(e)
-                print(discord.ext.commands.errors.CommandInvokeError(e))
-                print(discord.ext.commands.errors.CommandInvokeError(e).original)
                 AImage = MessageReply.attachments[0].url
                 if AImage[:7] != "https://" and AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-4:] != ".jpeg" and AImage[-4:] != ".gif":
                     await ctx.send('The image needs to be a `.gif`, `.png`, or `.jpg`!') 
@@ -341,9 +338,7 @@ async def reportabug(ctx):
                     AImage = (MessageReply.content)
                 else:
                     result = True
-            except discord.ext.commands.errors.CommandInvokeError(e):
-                print(discord.ext.commands.errors.CommandInvokeError(e).original)
-                print(e)                
+            except discord.ext.commands.errors.CommandInvokeError:
                 if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
                     await ctx.send('Please send a valid link/image, not just some text!')
                     MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
@@ -356,6 +351,13 @@ async def reportabug(ctx):
                     MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
                     AImage = (MessageReply.content)
             except discord.HTTPException:
+                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
+                    await ctx.send('Please send a valid link/image, not just some text!')
+                    MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
+                    AImage = (MessageReply.content)
+                else:
+                    result = True
+            except discord.errors.HTTPException:
                 if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
                     await ctx.send('Please send a valid link/image, not just some text!')
                     MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
