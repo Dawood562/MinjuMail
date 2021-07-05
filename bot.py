@@ -179,7 +179,7 @@ async def say(ctx, chnl, *speech):
 @client.command()
 async def accept(ctx, msgid: int):
     if ctx.author.id in staffids:
-        asd = await client.get_channel(842070840929419284).fetch_message(msgid)
+        asd = await client.get_channel(861687628881199104).fetch_message(msgid)
         if asd.embeds[0].title == 'Bug Report':            
             efields = asd.embeds[0].fields
             eauth = asd.embeds[0].author.name
@@ -196,11 +196,11 @@ async def accept(ctx, msgid: int):
                 KEmbed.add_field(name="**Image Link:**", value=f"{efields[3].value}", inline=False)
                 KEmbed.set_image(url=f'{efields[3].value}')
             KEmbed.set_footer(text=f'{efooter}')
-            KNOWNEmbed = await client.get_channel(842070860494929950).send(embed=KEmbed)
+            KNOWNEmbed = await client.get_channel(749732893743513629).send(embed=KEmbed)
             await KNOWNEmbed.add_reaction('⬆️')
             await KNOWNEmbed.add_reaction('⬇️')
-            await ctx.send(embed=discord.Embed(title='Bug Report Accepted', description=f'Bug report [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has been approved by **{ctx.author}**, and <@{reporterid}> has been DMd.', color=random.choice(embedcolours)))
-            await client.get_user(reporterid).send(embed=discord.Embed(title='Bug Report Accepted', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) has been approved by **{ctx.author}** and sent to <#842070860494929950>.', color=random.choice(embedcolours)))
+            await ctx.send(embed=discord.Embed(title='Bug Report Accepted', description=f'Bug report [here](https://discord.com/channels/774031288318296085/861687628881199104/{msgid}) has been approved by **{ctx.author}**, and <@{reporterid}> has been DMd.', color=random.choice(embedcolours)))
+            await client.get_user(reporterid).send(embed=discord.Embed(title='Bug Report Accepted', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) has been approved by **{ctx.author}** and sent to <#749732893743513629>.', color=random.choice(embedcolours)))
         else:
             efields = asd.embeds[0].fields
             eauth = asd.embeds[0].author.name
@@ -213,9 +213,9 @@ async def accept(ctx, msgid: int):
             VEmbed.add_field(name="**Artist Gender:**", value=f"{gender}", inline=False)
             VEmbed.add_field(name="**Artist Type:**", value=f"{atype}", inline=False)
             VEmbed.set_footer(text=f'{efooter}')
-            SUGGESTEmbed = await client.get_channel(842070860494929950).send(embed=VEmbed)
+            SUGGESTEmbed = await client.get_channel(737721977816743966).send(embed=VEmbed)
             await SUGGESTEmbed.add_reaction('⬆️')
-            await ctx.send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
+            await ctx.send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'Card suggestion [here](https://discord.com/channels/774031288318296085/861687628881199104/{msgid}) has been approved by **{ctx.author}**.', color=random.choice(embedcolours)))
             await client.get_user(reporterid).send(embed=discord.Embed(title='Card Suggestion Accepted', description=f'[Your bug](https://discord.com/channels/@me/{eauth}) has been approved by **{ctx.author}** and sent to <#737721977816743966>.', color=random.choice(embedcolours)))
     else:
         await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
@@ -223,11 +223,11 @@ async def accept(ctx, msgid: int):
 @client.command(aliases=['deny'])
 async def reject(ctx, msgid: int):
     if ctx.author.id in staffids:
-        asd = await client.get_channel(842070840929419284).fetch_message(msgid)
+        asd = await client.get_channel(861687628881199104).fetch_message(msgid)
         eauth = asd.embeds[0].author.name
         efooter = asd.embeds[0].footer.text
         reporterid = int(efooter[efooter.find('(', 17, len(efooter))+1:-1])
-        rejectreason = await client.get_channel(842070840929419284).send(embed=discord.Embed(title='Why are you rejecting this?', 
+        rejectreason = await client.get_channel(861687628881199104).send(embed=discord.Embed(title='Why are you rejecting this?', 
                                                     description='''Below are a list of keywords you can use:\n
                                                     __Bugs:__
                                                     **known (link)** - Sends a message saying that the bug is known and has been reported at `link`.
@@ -258,7 +258,7 @@ async def reject(ctx, msgid: int):
             pass
         else:
             await MessageReply.delete()
-            await rejectreason.edit(embed=discord.Embed(title=f'{asd.embeds[0].title} successfully rejected!', description=f'{asd.embeds[0].title} [here](https://discord.com/channels/774031288318296085/842070840929419284/{msgid}) has successfully been rejected by **{ctx.author}**, and <@{reporterid}> has been DMd. Reason:\n\n> {reason}', color=random.choice(embedcolours)))
+            await rejectreason.edit(embed=discord.Embed(title=f'{asd.embeds[0].title} successfully rejected!', description=f'{asd.embeds[0].title} [here](https://discord.com/channels/774031288318296085/861687628881199104/{msgid}) has successfully been rejected by **{ctx.author}**, and <@{reporterid}> has been DMd. Reason:\n\n> {reason}', color=random.choice(embedcolours)))
             await client.get_user(reporterid).send(embed=discord.Embed(title=f'Your {asd.embeds[0].title} has been rejected.', description=f'[Your {asd.embeds[0].title}](https://discord.com/channels/@me/{eauth}) was rejected by {ctx.author}.\n\nReason:\n> {reason}', color=random.choice(embedcolours)))
     else:
         await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
@@ -391,7 +391,7 @@ async def reportabug(ctx):
                 
                 ECheck.set_footer(text=f'Suggested by {ctx.author} ({ctx.author.id})')
                 ECheck.set_author(name=f'{ctx.message.channel.id}/{DMEmbed.id}')
-                CHECKEmbed = await client.get_channel(842070840929419284).send(f"New bug report from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
+                CHECKEmbed = await client.get_channel(861687628881199104).send(f"New bug report from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
                 await CHECKEmbed.edit(content=f"New bug report from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this bug report.", embed=ECheck)
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Bug report by {ctx.message.author} has been sent to the checking channel.')
             elif reaction.emoji == '❌':
@@ -514,7 +514,7 @@ async def suggestacard(ctx):
                 
                 ECheck.set_footer(text=f'Suggested by {ctx.author} ({ctx.author.id})')
                 ECheck.set_author(name=f'{ctx.message.channel.id}/{DMEmbed.id}')
-                CHECKEmbed = await client.get_channel(842070840929419284).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
+                CHECKEmbed = await client.get_channel(861687628881199104).send(f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).", embed=ECheck)
                 await CHECKEmbed.edit(content=f"New card suggestion from **{ctx.message.author}** ({ctx.message.author.mention}).\nUse `_accept {CHECKEmbed.id}` or `_reject {CHECKEmbed.id}` to accept or reject this card suggestion.\nAlso remember that they can't submit special characters so don't reject for that!", embed=ECheck)
                 print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card suggestion by {ctx.message.author} has been sent to the checking channel.')
                 break
@@ -533,14 +533,14 @@ async def suggestacard(ctx):
 
 
 @client.command()
-async def edit(ctx, msgid: int, givenfield: str, *editing):
+async def edit(ctx, msgid: int, channelid: int, givenfield: str, *editing):
     editing = ' '.join(editing)
     print(f'"{givenfield}"')
     print(f'"{givenfield.lower()}"')
     try:
-        EmbedToEdit = await client.get_channel(842070860494929950).fetch_message(msgid)
+        EmbedToEdit = await client.get_channel(channelid).fetch_message(msgid)
     except discord.errors.NotFound:
-        await ctx.send("That message cannot be found! Please make sure it's in <#842070860494929950>!")
+        await ctx.send("That message cannot be found! Please make sure it's in <#channelid>!")
     else:
         newembed = discord.Embed(title='Bug Report', description="React with ⬆️ if you've experienced this bug, and ⬇️ if you haven't!")
         newembed.set_footer(text=f'{EmbedToEdit.embeds[0].footer.text}')
