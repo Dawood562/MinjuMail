@@ -332,7 +332,7 @@ async def reportabug(ctx):
                 else:
                     result = True
             except IndexError:
-                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-4:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
+                if ((AImage[:7] != "https://") and (AImage[-4:] != ".png" and AImage[-4:] != ".jpg" and AImage[-5:] != ".jpeg" and AImage[-4:] != ".gif")) and AImage.lower() != "none" and AImage.lower() != "cancel":
                     await ctx.send('Invalid link!') 
                     MessageReply = await client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
                     AImage = (MessageReply.content)
