@@ -147,13 +147,24 @@ async def plshelp(ctx, *hargs):
     else:
         pass
 
-# @slash.slash(name='test1', description='Allows the user to report a bug', options=[create_option(name='stepstoreproduce',
+# @slash.slash(name='test1', description='Allows the user to report a bug', options=[create_option(name='Steps To Reproduce',
 #                description='What did you do to cause the bug?',
 #                option_type=3,
-#                required=True)])
-
-# async def test1(ctx, steps: str):
-#    await ctx.send(f'yes {steps}')
+#                required=True),
+#                create_option(name='Expected Result',
+#                description='What should happen?',
+#                option_type=3,
+#                required=True),
+#                create_option(name='Actual Result',
+#                description='What actually happened?',
+#                option_type=3,
+#                required=True),
+#                create_option(name='Image Links',
+#                description='Add an image link here if necessary!',
+#                option_type=3,
+#                required=False)])
+# async def test1(ctx, steps: str, expected: str, actual: str, image: str = None):
+#    await ctx.send(f'yes {steps}, {expected}, {actual}, {image}.')
 
 
 @client.command(aliases=['p'])
