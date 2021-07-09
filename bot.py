@@ -63,9 +63,7 @@ async def on_command_error(ctx, error):
 
 #@client.event
 #async def on_raw_reaction_add(ctx):
- #   if ctx.channel_id != 737721977816743966 and ctx.emoji.:
- #       pass
- #   else:
+ #   if (ctx.channel_id == 737721977816743966) and (ctx.message.author.id = 123) and ((ctx.emoji.name in ['U+2B06', 'U+FE0F']) or (ctx.emoji == '⬆️')):
  #       print('Reaction detected in suggest cards.')
    #     asd = await client.get_channel(737721977816743966).fetch_message(ctx.message_id)
    #     efields = asd.embeds[0].fields
@@ -74,6 +72,8 @@ async def on_command_error(ctx, error):
    #     atype = efields[2].value
     #    change_vote(artist, gender, atype, 1)
    #     print(f'Added a vote to {artist}')
+ #   else:
+ #       pass
 
 @client.command()
 async def snow(ctx):
