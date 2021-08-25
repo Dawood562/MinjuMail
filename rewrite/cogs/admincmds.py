@@ -14,7 +14,7 @@ class admincmds(commands.Cog):
             pass
         else:
             await ctx.send("Restarting bot...")
-            os.execv(sys.executable, ['python'] + sys.argv)
+            os.execv(['python'] + sys.argv)
 
     @commands.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo'])
     async def shutdown(self, ctx):
