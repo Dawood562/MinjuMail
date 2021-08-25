@@ -7,36 +7,36 @@ class admincmds(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-        @commands.command()
-        async def load(self, *, module : str):
-            try:
-                self.client.load_extension(module)
-            except Exception as e:
-                await ctx.send('\N{PISTOL}')
-                await ctx.send('{}: {}'.format(type(e).__name__, e))
-            else:
-                await ctx.send('Loaded cog.')
+    @commands.command()
+    async def load(self, *, module : str):
+        try:
+            self.client.load_extension(module)
+        except Exception as e:
+            await ctx.send('\N{PISTOL}')
+            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        else:
+            await ctx.send('Loaded cog.')
 
-        @commands.command()
-        async def unload(self, *, module : str):
-            try:
-                self.client.unload_extension(module)
-            except Exception as e:
-                await ctx.send('\N{PISTOL}')
-                await ctx.send('{}: {}'.format(type(e).__name__, e))
-            else:
-                await ctx.send('Unloaded cog.')
+    @commands.command()
+    async def unload(self, *, module : str):
+        try:
+            self.client.unload_extension(module)
+        except Exception as e:
+            await ctx.send('\N{PISTOL}')
+            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        else:
+            await ctx.send('Unloaded cog.')
 
-        @commands.command()
-        async def _reload(self, *, module : str):
-            try:
-                self.client.unload_extension(module)
-                self.client.load_extension(module)
-            except Exception as e:
-                await ctx.send('\N{PISTOL}')
-                await ctx.send('{}: {}'.format(type(e).__name__, e))
-            else:
-                await ctx.send('Successfully reloaded cog.')
+    @commands.command()
+    async def _reload(self, *, module : str):
+        try:
+            self.client.unload_extension(module)
+            self.client.load_extension(module)
+        except Exception as e:
+            await ctx.send('\N{PISTOL}')
+            await ctx.send('{}: {}'.format(type(e).__name__, e))
+        else:
+            await ctx.send('Successfully reloaded cog.')
 
 
     @commands.command()
