@@ -10,9 +10,8 @@ class admincmds(commands.Cog):
     @commands.command()
     async def load(self, ctx, module : str):
         try:
-            self.client.load_extension(module)
+            self.client.load_extension(f'rewrite.cogs.{module}')
         except Exception as e:
-            await ctx.send('\N{PISTOL}')
             await ctx.send('{}: {}'.format(type(e).__name__, e))
         else:
             await ctx.send('Loaded cog.')
@@ -20,9 +19,8 @@ class admincmds(commands.Cog):
     @commands.command()
     async def unload(self, ctx, module : str):
         try:
-            self.client.unload_extension(module)
+            self.client.unload_extension(f'rewrite.cogs.{module}')
         except Exception as e:
-            await ctx.send('\N{PISTOL}')
             await ctx.send('{}: {}'.format(type(e).__name__, e))
         else:
             await ctx.send('Unloaded cog.')
@@ -30,10 +28,9 @@ class admincmds(commands.Cog):
     @commands.command(aliases=['reload'])
     async def _reload(self, ctx, module : str):
         try:
-            self.client.unload_extension(module)
-            self.client.load_extension(module)
+            self.client.unload_extension(f'rewrite.cogs.{module}')
+            self.client.load_extension(f'rewrite.cogs.{module}')
         except Exception as e:
-            await ctx.send('\N{PISTOL}')
             await ctx.send('{}: {}'.format(type(e).__name__, e))
         else:
             await ctx.send('Successfully reloaded cog.')
