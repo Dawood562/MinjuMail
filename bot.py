@@ -13,7 +13,7 @@ from datetime import datetime
 # from collections import namedtuple
 import traceback
 import sys
-from lib.functions import *
+from rewrite.lib.functions import *
 
 intents = discord.Intents.default()
 intents.members = True
@@ -36,7 +36,7 @@ async def on_ready():
 cogs = ["testcmds"]
 
 for cog in cogs:
-    client.load_extension("cogs." + cog)
+    client.load_extension("rewrite.cogs." + cog)
     print(f"{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog")
 
 # --Start bot--
