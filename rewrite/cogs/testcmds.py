@@ -7,7 +7,7 @@ class testcmds(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send(f'**Latency:** {round(client.latency*1000, 1)}ms')
+        await ctx.send(f'**Latency:** {round(self.client.latency*1000, 1)}ms')
 
 def setup(client):
     client.add_cog(testcmds(client))
