@@ -13,7 +13,7 @@ from datetime import datetime
 # from collections import namedtuple
 import traceback
 import sys
-from jsonfuncs import *
+from lib.functions import *
 
 intents = discord.Intents.default()
 intents.members = True
