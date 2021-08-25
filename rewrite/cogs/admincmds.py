@@ -8,7 +8,7 @@ class admincmds(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def load(self, *, module : str):
+    async def load(self, ctx, module : str):
         try:
             self.client.load_extension(module)
         except Exception as e:
@@ -18,7 +18,7 @@ class admincmds(commands.Cog):
             await ctx.send('Loaded cog.')
 
     @commands.command()
-    async def unload(self, *, module : str):
+    async def unload(self, ctx, module : str):
         try:
             self.client.unload_extension(module)
         except Exception as e:
@@ -27,8 +27,8 @@ class admincmds(commands.Cog):
         else:
             await ctx.send('Unloaded cog.')
 
-    @commands.command()
-    async def _reload(self, *, module : str):
+    @commands.command(aliases=['reload'])
+    async def _reload(self, ctx, module : str):
         try:
             self.client.unload_extension(module)
             self.client.load_extension(module)
