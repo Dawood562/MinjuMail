@@ -8,7 +8,7 @@ class admincmds(commands.Cog):
 
 
     @commands.command()
-    async def restart(ctx):
+    async def restart(self, ctx):
         if ctx.author.id != 221188745414574080:
             pass
         else:
@@ -16,7 +16,7 @@ class admincmds(commands.Cog):
             os.execv(sys.executable, ['python'] + sys.argv)
 
     @commands.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo'])
-    async def shutdown(ctx):
+    async def shutdown(self, ctx):
         if (ctx.message.author.id != 221188745414574080) and (ctx.message.author.id != 303901339891531779):
             print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: {ctx.message.author} tried to shut the bot down lol')
         else:
