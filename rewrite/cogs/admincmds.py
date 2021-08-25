@@ -8,12 +8,12 @@ class admincmds(commands.Cog):
 
 
     @client.command()
-        async def restart(ctx):
-            if ctx.author.id != 221188745414574080:
-                pass
-            else:
-                await ctx.send("Restarting bot...")
-                os.execv(sys.executable, ['python'] + sys.argv)
+    async def restart(ctx):
+        if ctx.author.id != 221188745414574080:
+            pass
+        else:
+            await ctx.send("Restarting bot...")
+            os.execv(sys.executable, ['python'] + sys.argv)
 
     @client.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo'])
     async def shutdown(ctx):
