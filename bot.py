@@ -37,7 +37,7 @@ cogs = ["testcmds"]
 
 for cog in cogs:
     client.load_extension("rewrite.cogs." + cog)
-    print(f"{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog")
+    print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Loaded {cog} cog')
 
 # --Start bot--
 client_token = os.environ.get("TOKEN")
