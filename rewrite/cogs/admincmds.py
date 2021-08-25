@@ -17,7 +17,7 @@ class admincmds(commands.Cog):
 
     @client.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo'])
     async def shutdown(ctx):
-        if (ctx.message.author.id != '221188745414574080) and (ctx.message.author.id != 303901339891531779):
+        if (ctx.message.author.id != 221188745414574080) and (ctx.message.author.id != 303901339891531779):
             print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: {ctx.message.author} tried to shut the bot down lol')
         else:
             print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Bot has been shut down.')
