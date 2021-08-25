@@ -1,9 +1,19 @@
 import discord
+import os
 from discord.ext import commands
 
 class admincmds(commands.Cog):
     def __init__(self, client):
         self.client = client
+
+
+    @client.command()
+        async def restart(ctx):
+            if ctx.author.id != 221188745414574080:
+                pass
+            else:
+                await ctx.send("Restarting bot...")
+                os.execv(sys.executable, ['python'] + sys.argv)
 
     @client.command(aliases=['goodnight', 'jaljjayo', 'sd', 'snowwhendubu', 'maliwhensunoo'])
     async def shutdown(ctx):
