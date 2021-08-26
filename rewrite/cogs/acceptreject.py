@@ -71,6 +71,7 @@ class acceptreject(commands.Cog):
                                                         **suggested** - Sends a message saying that the artist has already been suggested.
                                                         **info** - Sends a message saying that their suggestion contains incorrect information.
                                                         **troll** - Doesn't send a response because they're trolling with the submission.
+                                                        **blank** - Doesn't send a response.
                                                         ''', color=random.choice(embedcolours)))
             MessageReply = await self.client.wait_for('message', check=lambda message: message.author.id == ctx.author.id)
             reason = (MessageReply.content)
@@ -86,12 +87,13 @@ class acceptreject(commands.Cog):
                 reason = 'Thanks for your suggestion, but the information you provided is incorrect!'
             else:
                 pass
-            if reason == 'troll':
+            
+            if reason.lower() in ['troll', 'blank']:
                 pass
             else:
                 await MessageReply.delete()
                 await rejectreason.edit(embed=discord.Embed(title=f'{asd.embeds[0].title} successfully rejected!', description=f'{asd.embeds[0].title} [here](https://discord.com/channels/774031288318296085/861687628881199104/{msgid}) has successfully been rejected by **{ctx.author}**, and <@{reporterid}> has been DMd. Reason:\n\n> {reason}', color=random.choice(embedcolours)))
-                await self.client.get_user(reporterid).send(embed=discord.Embed(title=f'Your {asd.embeds[0].title} has been rejected.', description=f'[Your {asd.embeds[0].title}](https://discord.com/channels/@me/{eauth}) was rejected by {ctx.author}.\n\nReason:\n> {reason}', color=random.choice(embedcolours)))
+            await self.client.get_user(reporterid).send(embed=discord.Embed(title=f'Your {asd.embeds[0].title} has been rejected.', description=f'[Your {asd.embeds[0].title}](https://discord.com/channels/@me/{eauth}) was rejected by {ctx.author}.\n\nReason:\n> {reason}', color=random.choice(embedcolours)))
         else:
             await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
