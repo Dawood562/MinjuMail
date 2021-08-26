@@ -18,7 +18,6 @@ class acceptreject(commands.Cog):
                 asdembeds = asd.embeds[0].title
             except IndexError:
                 await ctx.send(embed=discord.Embed(title='Error in Accept Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
-                print(e)
             else:
                 if asd.embeds[0].title == 'Bug Report':            
                     efields = asd.embeds[0].fields
@@ -72,7 +71,6 @@ class acceptreject(commands.Cog):
                 efooter = asd.embeds[0].footer.text
             except IndexError:
                 await ctx.send(embed=discord.Embed(title='Error in Reject Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
-                print(e)
             else:
                 reporterid = int(efooter[efooter.find('(', 17, len(efooter))+1:-1])
                 rejectreason = await self.client.get_channel(861687628881199104).send(embed=discord.Embed(title='Why are you rejecting this?', 
