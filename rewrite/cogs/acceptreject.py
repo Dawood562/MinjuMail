@@ -73,6 +73,7 @@ class acceptreject(commands.Cog):
             try:
                 eauth = asd.embeds[0].author.name
                 efooter = asd.embeds[0].footer.text
+                reporterid = int(efooter[efooter.find('(', 17, len(efooter))+1:-1])
             except IndexError:
                 await ctx.send(embed=discord.Embed(title='Error in Reject Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
             except AttributeError:
@@ -80,7 +81,6 @@ class acceptreject(commands.Cog):
             except:
                 await ctx.send(embed=discord.Embed(title='Error in Reject Command', description=f'An unexpected error occured.', color=random.choice(embedcolours)))
             else:
-                reporterid = int(efooter[efooter.find('(', 17, len(efooter))+1:-1])
                 rejectreason = await self.client.get_channel(861687628881199104).send(embed=discord.Embed(title='Why are you rejecting this?', 
                                                             description='''Below are a list of keywords you can use:\n
                                                             __Bugs:__
