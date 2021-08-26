@@ -16,7 +16,7 @@ class acceptreject(commands.Cog):
             asd = await self.client.get_channel(861687628881199104).fetch_message(msgid)
             try:
                 asdembeds = asd.embeds[0].title
-            except Exception as e:
+            except IndexError:
                 await ctx.send(embed=discord.Embed(title='Error in Accept Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
                 print(e)
             else:
@@ -70,7 +70,7 @@ class acceptreject(commands.Cog):
             try:
                 eauth = asd.embeds[0].author.name
                 efooter = asd.embeds[0].footer.text
-            except Exception as e:
+            except IndexError:
                 await ctx.send(embed=discord.Embed(title='Error in Reject Command', description=f'Please use a correct message ID!', color=random.choice(embedcolours)))
                 print(e)
             else:
