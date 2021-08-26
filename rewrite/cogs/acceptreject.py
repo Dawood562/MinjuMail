@@ -10,7 +10,7 @@ class acceptreject(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @client.command()
+    @commands.command()
     async def accept(self, ctx, msgid: int):
         if ctx.author.id in staffids:
             asd = await self.client.get_channel(861687628881199104).fetch_message(msgid)
@@ -54,7 +54,7 @@ class acceptreject(commands.Cog):
         else:
             await ctx.send(f'You need to be staff to use this {ctx.author.mention}!')
 
-    @client.command(aliases=['deny'])
+    @commands.command(aliases=['deny'])
     async def reject(self, ctx, msgid: int):
         if ctx.author.id in staffids:
             asd = await self.client.get_channel(861687628881199104).fetch_message(msgid)
