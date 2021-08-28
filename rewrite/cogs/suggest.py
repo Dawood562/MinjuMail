@@ -8,10 +8,35 @@ class suggest(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases=['sac', 'scard', 'scards', 'cardsuggest', 'cs'])
+        
+    @commands.group(invoke_without_command=True)
+    async def suggest(self, ctx):
+        await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Suggestion', description='Missing arguments. Please use one of `group`, `drama`, or `soloist`.'))
+        pass
+    
+    
+    
+    @suggest.group(aliases=['groups', 'g'])
+    async def group(self, ctx):
+        await ctx.send('Suggest group yes? Group name?')
+        await ctx.send('Suggest group yes? Group gender?')
+        # sex
+    
+    @suggest.group(aliases=['solo', 's'])
+    async def soloist(self, ctx):
+        await ctx.send('Suggest soloist yes? Soloist name?')
+        await ctx.send('Suggest soloist yes? Soloist gender?')
+        # sex
+        
+    @suggest.group(aliases=['kdrama', 'k-drama', 'd', 'k'])
+    async def drama(self, ctx):
+        await ctx.send('Suggest drama yes? Drama name?')
+        # sex
+    
+    @suggest.group(aliases=['cards'])
     @discord.ext.commands.dm_only()
     @commands.cooldown(1,900,commands.BucketType.user)
-    async def suggestacard(self, ctx):
+    async def card(self, ctx):
         print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}::: Card Suggestion started by {ctx.message.author}')
         while True:
             await ctx.send(embed=discord.Embed(color=random.choice(embedcolours), title='Thanks for wanting to suggest an artist!', description='Please remember that this should only be used if the artist is not already in the game or in the <#737721977816743966> channel!\nIf at any time you wish to cancel (e.g. if the bog bugs and 2 embeds are sent), type `cancel`! It takes until the 3rd embed for it to cancel, however.'))
